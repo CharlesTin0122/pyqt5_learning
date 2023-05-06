@@ -7,46 +7,39 @@
 # Description: 堆叠布局
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QStackedLayout, QLabel
+from PyQt5.QtWidgets import *
 
 
-class Window1(QWidget):
-    def __init__(self):
+# 创建堆叠布局中所用的标签组件的类
+class Win(QWidget):
+    def __init__(self, text, sheet):
         super().__init__()
-        QLabel("我是抽屉1要显示的内容", self)
-        self.setStyleSheet("background-color:green;")
-
-
-class Window2(QWidget):
-    def __init__(self):
-        super().__init__()
-        QLabel("我是抽屉2要显示的内容", self)
-        self.setStyleSheet("background-color:red;")
+        self.text = text  # 设置标签所需的文本变量
+        self.sheet = sheet  # 设置标签所需的样式表变量
+        stacked_label = QLabel(self.text, self)  # 创建标签
+        stacked_label.setStyleSheet(self.sheet)  # 设置标签样式表
 
 
 class MyWindow(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.stacked_layout = None
-        self.create_stacked_layout()
-        self.init_ui()
+    def __init__(self):
+        super().__init__()
+        self.stacked_layout = None  # 构建时创建变量
+        self.create_stacked_layout()  # 构建时运行函数
+        self.init_ui()  # 构建时运行函数
 
-    def create_stacked_layout(self):
+    def create_stacked_layout(self):  # 创建堆叠布局函数
         # 创建堆叠(抽屉)布局
-        self.stacked_layout = QStackedLayout()
+        self.stacked_layout = QStackedLayout()  # 创建堆叠布局
         # 创建单独的Widget
-        win1 = Window1()
-        win2 = Window2()
-        # 将创建的2个Widget添加到抽屉布局器中
+        win1 = Win("我是抽屉1要显示的内容", "background-color:green;")  # 创建堆叠布局所用的标签组件
+        win2 = Win("我是抽屉2要显示的内容", "background-color:red;")  # 创建堆叠布局所用的标签组件
+        # 将创建的2个标签组件添加到堆叠布局器中
         self.stacked_layout.addWidget(win1)
         self.stacked_layout.addWidget(win2)
 
-    def init_ui(self):
-        # 设置Widget大小以及固定宽高
-        self.setFixedSize(300, 270)
-
-        # 1. 创建整体的布局器
-        container = QVBoxLayout()
+    def init_ui(self):  # 构建主窗口函数
+        self.setFixedSize(300, 270)  # 设置Widget大小以及固定宽高
+        container = QVBoxLayout()  # 1. 创建整体的容器布局器
 
         # 2. 创建1个要显示具体内容的子Widget
         widget = QWidget()
