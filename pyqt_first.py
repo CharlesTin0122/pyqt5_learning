@@ -11,7 +11,11 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QDesktopWidget
 
 if __name__ == "__main__":
-	app = QApplication(sys.argv)  # 创建应用程序
+	"""
+	创建应用程序,只要是Qt制作的界面，有且只有一个QApplication对象
+	sys.argv当做参数的目的是将运行时的命令参数传递给QApplication对象
+	"""
+	app = QApplication(sys.argv)
 
 	w = QWidget()  # 创建窗口
 	w.setWindowTitle('First PyQt')  # 设置窗口名字
@@ -26,7 +30,7 @@ if __name__ == "__main__":
 
 	btn = QPushButton("login", w)  # 创建按钮
 	btn.setGeometry(50, 80, 70, 30)  # 调整标签位置与大小，x,y,w,h
-	btn.setParent(w)  # 设置父对象
+	# btn.setParent(w)  # 设置父对象
 
 	w.resize(300, 300)  # 重设窗口大小
 
@@ -44,4 +48,4 @@ if __name__ == "__main__":
 
 	w.show()  # 显示窗口
 
-	app.exec_()  # 程序进入循环等待状态
+	app.exec()  # 程序进入循环等待状态
