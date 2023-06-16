@@ -36,7 +36,8 @@ class Label(QLabel):
 	def __init__(self):
 		super().__init__()
 		self.setText('Big Label')  # 设置标签文本
-		self.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)  # 设置标签居中，“|”按位数或运算
+		# 设置标签居中，垂直居中，水平居中，“|”按位数或运算，两个位只要有一个为1，其值为1
+		self.setAlignment(Qt.AlignVCenter | Qt.AlignHCenter)
 		self.setPixmap(QPixmap('teGraphEditor.png'))  # 设置标签像素图，设置了像素图就不会显示文本
 
 

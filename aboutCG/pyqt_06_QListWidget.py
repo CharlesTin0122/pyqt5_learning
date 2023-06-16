@@ -13,10 +13,14 @@ from PyQt5.QtCore import *
 
 
 class ImageLabel(QWidget):  # 创建图片文字标签类
+	"""
+	图片文字标签类：上面一个标签显示图片。下面一个标签显示文字，将两个标签放入一个垂直布局里
+	因为每个图片文字标签类都有不同的图片和文字，所以引入图片和文字两个参数
+	"""
 	def __init__(self, tex, image_path):  # 构造函数，创建两个形参tex, image_path
 		super().__init__()  # 调用父类构造函数
 		lb_image = QLabel()  # 创建一个标签
-		q_pixmap = QPixmap(image_path).scaled(100, 100)  # 创建一个像素图，并缩放大小到100*100
+		q_pixmap = QPixmap(image_path).scaled(100, 100)  # 创建一个像素图，并缩放大小到100*100像素
 		lb_image.setPixmap(q_pixmap)  # 给标签设置图像
 		lb_image.setAlignment(Qt.AlignHCenter)  # 使标签居中
 
@@ -38,13 +42,19 @@ class ImageLabel(QWidget):  # 创建图片文字标签类
 		lb_image.setFixedSize(100, 100)  # 重设图片标签大小
 
 
-class MainWindow(QWidget):  # 创建主窗口类
+class MainWindow(QWidget):
+	"""
+	创建主窗口类,结构为：
+	QWidget-》QVBoxLayout-》QListWidget-》QListWidgetItem-》QVBoxLayout-》QLabel
+	要注意的是QListWidget, QListWidgetItem,
+	QListWidget.setItemWidget, QListWidget.addItem
+	"""
 	def __init__(self):
 		super().__init__()
 		self.setWindowTitle('——————')
 		self.resize(800, 600)
 
-		self.lw = QListWidget()  # 创建一个列表控件
+		self.lw = QListWidget()  # 创建一个列表控件，QListWidget是一个窗体类，可以实现列表布局效果
 		self.lw.setFlow(QListWidget.LeftToRight)  # 设置列表控件方向为从左至右
 		self.lw.setWrapping(True)  # 设置列表控件为可换行
 		self.lw.setResizeMode(QListWidget.Adjust)  # 设置列表控件为可自动调整位置
@@ -69,7 +79,7 @@ if __name__ == '__main__':
 	print(sys.argv)
 	w = MainWindow()
 	w.show()
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
 
 """
 这段代码创建了一个图形用户界面窗口，其中包含一个列表，每个列表项都包含一个图像和文本。具体实现过程如下：

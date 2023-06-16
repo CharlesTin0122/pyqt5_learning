@@ -48,4 +48,4 @@ if __name__ == "__main__":
 		btn.clicked.connect(partial(func, i))
 
 	btn.show()
-	sys.exit(app.exec_())
+	sys.exit(app.exec())
