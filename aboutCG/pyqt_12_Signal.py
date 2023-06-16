@@ -22,7 +22,7 @@ class MyWindow(QWidget):
         main_layout = QVBoxLayout()
         self.setLayout(main_layout)
 
-    def mouse_press_event(self, event):
+    def mousePressEvent(self, event):
         e_btn = event.button()
         if e_btn == Qt.LeftButton:
             self.mouse_pressed.emit(0)
